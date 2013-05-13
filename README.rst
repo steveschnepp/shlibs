@@ -20,4 +20,4 @@ implementation is done in a pure shell idiom, ie with lots of temporary files.
 It should not be an issue, but it's best to be aware of it. 
 
 Everything is located into a temporary directory created with ``mktemp -d``. It
-should therefore honor the varios $TMP environment variables.
+should therefore honors the varenvironment variables.
