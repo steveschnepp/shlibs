@@ -46,6 +46,7 @@ hash_set()
 
 	(
 		cd "$HASH_DIR"
+		# XXX - Should be escaped !		
 		HASH_ELEM="$1"
 		shift
 		echo "$@" > $HASH_ELEM
@@ -59,6 +60,7 @@ hash_get()
 
 	(
 		cd "$HASH_DIR"
+		# XXX - Should be escaped !		
 		HASH_ELEM="$1"
 		shift
 		[ -r $HASH_ELEM ] && cat "$HASH_ELEM"
