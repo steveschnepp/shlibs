@@ -1,0 +1,66 @@
+#! /bin/sh
+# brings hash API to SH
+#
+# Usage :
+# HASH=$(hash_create)
+# hash_set $HASH foo bar
+# hash_get $HASH foo
+# ...
+# hash_destroy $HASH
+
+hash_check() {
+	[ -z "$1" ] && return 1
+	[ ! -e "$1/0_shlib_hash.canary" ] && return 2
+	return 0
+}
+
+hash_create() {
+	HASH_DIR=$(mktemp -d)
+	echo "hash for $0 : $$" > ${HASH_DIR}/0_shlib_hash.canary
+	echo $HASH_DIR
+}
+
+hash_destroy() {
+	hash_check "$@" && HASH_DIR="$1" || return 1
+	shift
+
+	rm -Rf "$HASH_DIR"
+}
+
+hash_len()
+{
+        hash_check "$@" && HASH_DIR="$1" || return 1
+        shift
+
+	(
+		cd "$HASH_DIR"
+		LAST_ELEM=$(ls -1r | head -n 1)
+		[ "$LAST_ELEM" = "0_shlib_hash.canary" ] && echo 0 || echo $LAST_ELEM
+	)
+}
+
+hash_set()
+{
+	hash_check "$@" && HASH_DIR="$1" || return 1
+	shift
+
+	(
+		cd "$HASH_DIR"
+		HASH_ELEM="$1"
+		shift
+		echo "$@" > $HASH_ELEM
+	)
+}
+
+hash_get()
+{
+        hash_check "$@" && HASH_DIR="$1" || return 1
+        shift
+
+	(
+		cd "$HASH_DIR"
+		HASH_ELEM="$1"
+		shift
+		[ -r $HASH_ELEM ] && cat "$HASH_ELEM"
+	)
+}
