@@ -76,3 +76,14 @@ array_idx()
 		cat "$1"
 	)
 }
+
+array_values()
+{
+        array_check "$@" && ARRAY_DIR="$1" || return 1
+        shift
+
+	(
+		cd "$ARRAY_DIR"
+		ls -1 | grep -v 0_shlib_array.canary
+	)
+}
