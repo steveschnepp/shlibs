@@ -22,3 +22,29 @@ That should not be a real issue, as everything is located into a temporary
 directory created with ``mktemp -d``, so it should therefore honor relevant
 environment variables. It should also be quite fast as the file involved are
 usually quite small.
+
+shlibs_array
+------------
+
+The functions are::
+
+        array_check()
+        array_create()
+        array_destroy()
+        array_len()
+        array_push()
+        array_pop()
+        array_idx()
+        array_values()
+
+shlibs_hash
+-----------
+
+The functions are::
+
+        hash_check()
+        hash_create()
+        hash_destroy()
+        hash_len()
+        hash_set()
+        hash_get()
