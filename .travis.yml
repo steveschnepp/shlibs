@@ -1,0 +1,8 @@
+language: sh
+
+script:
+        - sh -x shlibs_array
+        - sh -x shlibs_hash
+
+# Container is OK
+sudo: false
