@@ -1,8 +1,13 @@
 language: sh
 
+addons:
+  apt:
+    packages:
+    - dash
+
 script:
-        - sh -x shlibs_array
-        - sh -x shlibs_hash
+        - /bin/dash -x shlibs_array
+        - /bin/dash -x shlibs_hash
 
 # Container is OK
 sudo: false
