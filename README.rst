@@ -3,6 +3,9 @@ ShLibs
 
 This is a collection of libraries to some bash sweetness in POSIX sh.
 
+.. image:: https://travis-ci.org/steveschnepp/shlibs.svg?branch=master
+    :target: https://travis-ci.org/steveschnepp/shlibs
+
 Usage is like importing in C::
 
     # Include arrays
